@@ -31,7 +31,7 @@ if ( ! defined( 'WOO_WALLET_ABSPATH' ) ) {
 
 // Define WOO_WALLET_PLUGIN_VERSION.
 if ( ! defined( 'WOO_WALLET_PLUGIN_VERSION' ) ) {
-	define( 'WOO_WALLET_PLUGIN_VERSION', '1.5.16' );
+	define( 'WOO_WALLET_PLUGIN_VERSION', '1.5.17' );
 }
 
 // include dependencies file.
