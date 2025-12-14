@@ -24,114 +24,117 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-// Variables - Light Theme
-$wallet-primary-color: #483DE0;
-$wallet-text-color: #333;
-$wallet-bg-color: #f4f6f8;
-$wallet-border-color: #eee;
-
-// Variables - Dark Theme (Beautiful & Visible)
-$wallet-dark-primary-color: #7C3AED;
-$wallet-dark-primary-gradient-start: #6366f1;
-$wallet-dark-primary-gradient-end: #8b5cf6;
-$wallet-dark-text-color: #ffffff;
-$wallet-dark-text-secondary: #d4d4d8;
-$wallet-dark-text-muted: #71717a;
-$wallet-dark-bg-color: #09090b;
-$wallet-dark-card-bg: #18181b;
-$wallet-dark-card-bg-lighter: #27272a;
-$wallet-dark-card-bg-hover: #3f3f46;
-$wallet-dark-border-color: #27272a;
-$wallet-dark-input-bg: #27272a;
-$wallet-dark-success: #22c55e;
-$wallet-dark-danger: #ef4444;
+// Variables - Dark Minimalist Theme
+$wallet-primary-color: #ad0000;
+$wallet-secondary-color: #ad0000;
+$wallet-text-color: #ffffff;
+$wallet-text-muted: #999999;
+$wallet-bg-color: #000000;
+$wallet-bg-secondary: #111111;
+$wallet-bg-elevated: #1a1a1a;
+$wallet-border-color: #222222;
+$wallet-success-color: #20ab1b;
+$wallet-alert-color: #ad0000;
+$wallet-headline-color: #555555;
+$wallet-link-color: #ffffff;
+$wallet-link-hover: #ad0000;
 
 .woo-wallet-icon-wallet:before {
     content: "\e900";
 }
 
-/* Beautiful Dark Theme */
+/* Migrated from modern-dashboard.css - Dark Minimalist Theme */
 .woo-wallet-my-wallet-container {
-    // CSS Variables
-    --wallet-primary-color: #{$wallet-dark-primary-color};
-    --wallet-text-color: #{$wallet-dark-text-color};
-    --wallet-bg-color: #{$wallet-dark-bg-color};
-    --wallet-border-color: #{$wallet-dark-border-color};
+    // CSS Variables for runtime usage if needed
+    --wallet-primary-color: #{$wallet-primary-color};
+    --wallet-secondary-color: #{$wallet-secondary-color};
+    --wallet-text-color: #{$wallet-text-color};
+    --wallet-text-muted: #{$wallet-text-muted};
+    --wallet-bg-color: #{$wallet-bg-color};
+    --wallet-bg-secondary: #{$wallet-bg-secondary};
+    --wallet-bg-elevated: #{$wallet-bg-elevated};
+    --wallet-border-color: #{$wallet-border-color};
+    --wallet-success-color: #{$wallet-success-color};
+    --wallet-alert-color: #{$wallet-alert-color};
+    --wallet-link-color: #{$wallet-link-color};
+    --wallet-link-hover: #{$wallet-link-hover};
 
-    color: #{$wallet-dark-text-color};
+    color: var(--wallet-text-color);
+    background: var(--wallet-bg-color);
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
     display: block;
 
+    a {
+        color: var(--wallet-link-color);
+        text-decoration: none;
+        transition: color 0.2s ease;
+
+        &:hover {
+            color: var(--wallet-link-hover);
+        }
+    }
+
     // Header
     .woo-wallet-header {
-        margin-bottom: 28px;
+        margin-bottom: 25px;
         text-align: left;
 
         h2 {
-            font-size: 1.75rem;
+            font-size: 1.8rem;
             font-weight: 700;
             margin: 0 0 8px;
-            color: #{$wallet-dark-text-color};
+            color: var(--wallet-text-color);
         }
 
         p {
-            color: #{$wallet-dark-text-muted};
+            color: var(--wallet-text-muted);
             margin: 0;
-            font-size: 0.95rem;
+            font-size: 1rem;
         }
     }
 
-    // Top Section with Card
+    // Top Section Wrapper
     .woo-wallet-top-section {
-        border-radius: 16px;
-        overflow: hidden;
-        margin-bottom: 32px;
-        background: #{$wallet-dark-card-bg};
-        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+        border-radius: 4px;
+        overflow: visible;
+        /* Changed from hidden to allow submenu overflow */
+        box-shadow: none;
+        margin-bottom: 40px;
+        background: var(--wallet-bg-secondary);
+        border: 1px solid var(--wallet-border-color);
     }
 
-    // Balance Card - Beautiful Purple Gradient
+    // Balance Card
     .woo-wallet-balance-card {
-        background: linear-gradient(135deg, #{$wallet-dark-primary-gradient-start} 0%, #{$wallet-dark-primary-gradient-end} 100%);
-        color: #fff;
-        padding: 48px 32px;
+        background: var(--wallet-bg-secondary);
+        color: var(--wallet-text-color);
+        padding: 50px 30px;
+        border-radius: 4px 4px 0 0;
         text-align: center;
         position: relative;
+        margin-bottom: 0;
         width: 100%;
         box-sizing: border-box;
-        overflow: hidden;
-
-        // Subtle light effect
-        &::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -30%;
-            width: 80%;
-            height: 150%;
-            background: radial-gradient(ellipse, rgba(255,255,255,0.15) 0%, transparent 60%);
-            pointer-events: none;
-        }
+        box-shadow: none;
+        border-bottom: 1px solid var(--wallet-border-color);
 
         h3 {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 0.85rem;
+            color: var(--wallet-text-muted);
+            font-size: 1.1rem;
             font-weight: 500;
-            margin: 0 0 12px;
+            margin: 0 0 10px;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            position: relative;
+            letter-spacing: 1px;
         }
 
         .woo-wallet-price {
-            font-size: 3rem;
-            font-weight: 700;
+            font-size: 3.5rem;
+            font-weight: 800;
             margin: 0;
-            color: #fff;
-            line-height: 1.2;
-            position: relative;
+            color: var(--wallet-text-color);
+            line-height: 1.1;
         }
     }
 
@@ -139,8 +142,11 @@ $wallet-dark-danger: #ef4444;
     .woo-wallet-nav-tabs {
         display: flex;
         flex-wrap: wrap;
-        background: #{$wallet-dark-card-bg-lighter};
+        background: var(--wallet-bg-color);
+        border-radius: 0 0 4px 4px;
         overflow: visible;
+        /* Changed from hidden to allow dropdown */
+        margin-bottom: 0;
         width: 100%;
         box-sizing: border-box;
     }
@@ -148,38 +154,45 @@ $wallet-dark-danger: #ef4444;
     .woo-wallet-nav-item-wrapper {
         flex: 1;
         position: relative;
+
+        /* Removed hover effect for click-based toggle */
     }
 
     .woo-wallet-nav-tab {
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 18px 20px;
-        background: #{$wallet-dark-card-bg-lighter};
-        color: #{$wallet-dark-text-secondary};
+        padding: 20px 15px;
+        background: var(--wallet-bg-color);
+        color: var(--wallet-text-muted);
         text-decoration: none !important;
         font-weight: 600;
-        font-size: 0.95rem;
+        font-size: 1rem;
         transition: all 0.2s ease;
         border: none;
         white-space: nowrap;
         width: 100%;
         box-sizing: border-box;
-        border-right: 1px solid #{$wallet-dark-border-color};
+        border-right: 1px solid var(--wallet-border-color);
+        border-bottom: none;
 
         &:hover,
         &:focus,
         &:active {
-            background: #{$wallet-dark-card-bg-hover};
-            color: #{$wallet-dark-text-color};
+            background: var(--wallet-bg-elevated);
+            color: var(--wallet-text-color);
             outline: none;
+            box-shadow: none;
         }
 
         &.active {
-            color: #{$wallet-dark-primary-color};
-            background: #{$wallet-dark-card-bg-hover};
+            color: var(--wallet-primary-color);
+            box-shadow: none;
+            background: var(--wallet-bg-elevated);
+            outline: none;
         }
 
+        /* Icon spacing */
         >span:first-child {
             margin-right: 8px;
         }
@@ -209,64 +222,70 @@ $wallet-dark-danger: #ef4444;
         top: 100%;
         left: 0;
         min-width: 200px;
-        background: #{$wallet-dark-card-bg};
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-        border: 1px solid #{$wallet-dark-border-color};
+        background: var(--wallet-bg-elevated);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         z-index: 100;
-        border-radius: 0 0 12px 12px;
+        border-radius: 0 0 4px 4px;
         overflow: hidden;
+        border: 1px solid var(--wallet-border-color);
+        border-top: none;
+        /* Removed opacity/visibility transition for slideToggle compatibility */
 
         .woo-wallet-submenu-item {
             display: block;
-            padding: 14px 20px;
-            color: #{$wallet-dark-text-secondary};
+            padding: 12px 20px;
+            color: var(--wallet-text-muted);
             text-decoration: none !important;
-            font-size: 0.9rem;
-            border-bottom: 1px solid #{$wallet-dark-border-color};
+            font-size: 0.95rem;
+            border-bottom: 1px solid var(--wallet-border-color);
             text-align: left;
-            transition: all 0.2s ease;
+            transition: all 0.2s;
 
             &:last-child {
                 border-bottom: none;
             }
 
             &:hover {
-                background: #{$wallet-dark-card-bg-hover};
-                color: #{$wallet-dark-primary-color};
+                background: var(--wallet-bg-secondary);
+                color: var(--wallet-primary-color);
             }
         }
     }
 
     // Content Area
     .woo-wallet-content-area {
-        background: transparent;
+        background: var(--wallet-bg-secondary);
         padding: 0;
+        box-shadow: none;
         overflow: hidden;
         width: 100%;
         box-sizing: border-box;
+        border: 1px solid var(--wallet-border-color);
+        border-radius: 4px;
     }
 
     .woo-wallet-section-title {
-        padding: 22px 28px;
+        padding: 25px 30px;
         margin: 0;
-        font-size: 1.1rem;
+        font-size: 1.2rem;
         font-weight: 700;
-        border-bottom: 1px solid #{$wallet-dark-border-color};
-        background: #{$wallet-dark-card-bg};
-        color: #{$wallet-dark-text-color};
+        border-bottom: 1px solid var(--wallet-border-color);
+        background: var(--wallet-bg-secondary);
+        color: var(--wallet-text-color);
     }
 
     .woo-wallet-form-wrapper .woo-wallet-section-title {
-        padding: 22px 0;
-        background: transparent;
+        padding: 25px 0px;
     }
 
     // Transactions Table
     .woo-wallet-transactions-list {
-        background: #{$wallet-dark-card-bg};
-        border-radius: 16px;
+        background: var(--wallet-bg-secondary);
+        border-radius: 4px;
+        border: 1px solid var(--wallet-border-color);
+        padding: 0;
+        box-shadow: none;
         overflow: hidden;
-        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
     }
 
     .woo-wallet-transactions-table {
@@ -276,21 +295,21 @@ $wallet-dark-danger: #ef4444;
 
         th {
             text-align: left;
-            padding: 18px 28px;
+            padding: 20px 30px;
             font-weight: 600;
-            color: #{$wallet-dark-text-muted};
-            border-bottom: 1px solid #{$wallet-dark-border-color};
-            background: #{$wallet-dark-card-bg-lighter};
-            font-size: 0.8rem;
+            color: var(--wallet-text-muted);
+            border-bottom: 1px solid var(--wallet-border-color);
+            background: var(--wallet-bg-color);
+            font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
         }
 
         td {
-            padding: 18px 28px;
-            border-bottom: 1px solid #{$wallet-dark-border-color};
-            color: #{$wallet-dark-text-secondary};
-            font-size: 0.95rem;
+            padding: 20px 30px;
+            border-bottom: 1px solid var(--wallet-border-color);
+            color: var(--wallet-text-color);
+            font-size: 1rem;
         }
 
         tr:last-child td {
@@ -298,7 +317,7 @@ $wallet-dark-danger: #ef4444;
         }
 
         tr:hover td {
-            background: #{$wallet-dark-card-bg-lighter};
+            background: var(--wallet-bg-elevated);
         }
 
         .amount {
@@ -306,32 +325,31 @@ $wallet-dark-danger: #ef4444;
             text-align: right;
 
             &.credit {
-                color: #{$wallet-dark-success};
+                color: var(--wallet-success-color);
             }
 
             &.debit {
-                color: #{$wallet-dark-danger};
+                color: var(--wallet-alert-color);
             }
         }
     }
 
     // Forms
     .woo-wallet-form-wrapper {
-        padding: 32px;
-        border-radius: 16px;
-        background: #{$wallet-dark-card-bg};
-        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+        padding: 40px;
+        border: 1px solid var(--wallet-border-color);
+        border-radius: 4px;
+        background: var(--wallet-bg-secondary);
 
         form {
-            padding-top: 12px;
+            padding-top: 14px;
         }
 
         label {
             display: block;
             margin-bottom: 10px;
             font-weight: 600;
-            color: #{$wallet-dark-text-color};
-            font-size: 0.9rem;
+            color: var(--wallet-text-color);
         }
 
         input[type="text"],
@@ -339,67 +357,75 @@ $wallet-dark-danger: #ef4444;
         textarea,
         select {
             width: 100%;
-            padding: 14px 16px;
-            border: 1px solid #{$wallet-dark-border-color};
-            border-radius: 10px;
-            margin-bottom: 22px;
-            font-size: 0.95rem;
-            background: #{$wallet-dark-input-bg};
-            color: #{$wallet-dark-text-color};
+            padding: 15px;
+            border: 1px solid var(--wallet-border-color);
+            border-radius: 4px;
+            margin-bottom: 25px;
+            font-size: 1rem;
+            background: var(--wallet-bg-color);
+            color: var(--wallet-text-color);
             box-sizing: border-box;
-            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            transition: border-color 0.3s ease;
 
             &:focus {
-                border-color: #{$wallet-dark-primary-color};
+                border-color: var(--wallet-primary-color);
                 outline: none;
-                box-shadow: 0 0 0 3px rgba($wallet-dark-primary-color, 0.2);
+                background: var(--wallet-bg-elevated);
             }
 
             &::placeholder {
-                color: #{$wallet-dark-text-muted};
+                color: var(--wallet-text-muted);
+            }
+        }
+
+        select {
+            option {
+                background: var(--wallet-bg-color);
+                color: var(--wallet-text-color);
             }
         }
 
         input[type="submit"] {
-            background: linear-gradient(135deg, #{$wallet-dark-primary-gradient-start} 0%, #{$wallet-dark-primary-gradient-end} 100%);
-            color: #fff;
+            background: var(--wallet-primary-color);
+            color: var(--wallet-text-color);
             border: none;
-            padding: 14px 36px;
-            border-radius: 10px;
+            padding: 15px 40px;
+            border-radius: 4px;
             font-weight: 600;
             cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            font-size: 1rem;
 
             &:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 6px 20px rgba($wallet-dark-primary-color, 0.4);
+                opacity: 0.9;
+                transform: translateY(-1px);
             }
         }
     }
 
     // Referral Page
     .woo-wallet-referral-link-card {
-        background: #{$wallet-dark-card-bg};
-        padding: 28px;
-        border-radius: 16px;
-        margin-bottom: 28px;
-        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+        background: var(--wallet-bg-secondary);
+        padding: 30px;
+        border-radius: 4px;
+        box-shadow: none;
+        margin-bottom: 30px;
+        border: 1px solid var(--wallet-border-color);
         box-sizing: border-box;
 
         h3 {
             margin-top: 0;
             font-size: 1.1rem;
-            color: #{$wallet-dark-text-color};
-            margin-bottom: 18px;
-            font-weight: 700;
+            color: var(--wallet-text-color);
+            margin-bottom: 20px;
+            font-weight: 600;
         }
     }
 
     .woo-wallet-referral-input-group {
         display: flex !important;
         align-items: center !important;
-        gap: 14px;
+        gap: 15px;
         width: 100%;
     }
 
@@ -410,26 +436,26 @@ $wallet-dark-danger: #ef4444;
 
         .dashicons {
             position: absolute;
-            left: 16px;
+            left: 15px;
             top: 50%;
             transform: translateY(-50%);
-            color: #{$wallet-dark-text-muted};
+            color: var(--wallet-text-muted);
             font-family: "dashicons" !important;
-            font-size: 18px;
-            width: 18px;
-            height: 18px;
-            line-height: 18px;
+            font-size: 20px;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
             pointer-events: none;
         }
 
         input[type="text"] {
             width: 100% !important;
-            padding: 14px 16px 14px 46px !important;
-            border: 1px solid #{$wallet-dark-border-color} !important;
-            border-radius: 10px !important;
-            font-size: 0.95rem !important;
-            color: #{$wallet-dark-text-color} !important;
-            background: #{$wallet-dark-input-bg} !important;
+            padding: 15px 15px 15px 45px !important;
+            border: 1px solid var(--wallet-border-color) !important;
+            border-radius: 4px !important;
+            font-size: 1rem !important;
+            color: var(--wallet-text-color) !important;
+            background: var(--wallet-bg-color) !important;
             box-sizing: border-box !important;
             margin: 0 !important;
             height: auto !important;
@@ -438,33 +464,33 @@ $wallet-dark-danger: #ef4444;
     }
 
     .woo-wallet-copy-btn {
-        background: linear-gradient(135deg, #{$wallet-dark-primary-gradient-start} 0%, #{$wallet-dark-primary-gradient-end} 100%);
-        color: #fff;
+        background: var(--wallet-primary-color);
+        color: var(--wallet-text-color);
         border: none;
-        padding: 14px 28px;
-        border-radius: 10px;
+        padding: 15px 30px;
+        border-radius: 4px;
         font-weight: 600;
         cursor: pointer;
         white-space: nowrap;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        transition: all 0.2s ease;
         position: relative;
-        font-size: 0.95rem;
+        font-size: 1rem;
         line-height: normal;
 
         &:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba($wallet-dark-primary-color, 0.4);
+            opacity: 0.9;
+            transform: translateY(-1px);
         }
 
         // Tooltip
         &::after {
             content: attr(data-tooltip);
             visibility: hidden;
-            width: 120px;
-            background-color: #{$wallet-dark-card-bg};
-            color: #{$wallet-dark-text-color};
+            width: 140px;
+            background-color: var(--wallet-bg-elevated);
+            color: var(--wallet-text-color);
             text-align: center;
-            border-radius: 8px;
+            border-radius: 4px;
             padding: 8px;
             position: absolute;
             z-index: 100;
@@ -472,11 +498,12 @@ $wallet-dark-danger: #ef4444;
             left: 50%;
             transform: translateX(-50%);
             opacity: 0;
-            transition: opacity 0.2s;
-            font-size: 0.8rem;
+            transition: opacity 0.3s;
+            font-size: 0.85rem;
             font-weight: normal;
             pointer-events: none;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--wallet-border-color);
         }
 
         &::before {
@@ -488,9 +515,9 @@ $wallet-dark-danger: #ef4444;
             transform: translateX(-50%);
             border-width: 6px;
             border-style: solid;
-            border-color: #{$wallet-dark-card-bg} transparent transparent transparent;
+            border-color: var(--wallet-bg-elevated) transparent transparent transparent;
             opacity: 0;
-            transition: opacity 0.2s;
+            transition: opacity 0.3s;
         }
 
         &:hover::after,
@@ -502,11 +529,12 @@ $wallet-dark-danger: #ef4444;
 
     // Referral Stats Table
     .woo-wallet-referral-stats {
-        background: #{$wallet-dark-card-bg};
-        border-radius: 16px;
+        background: var(--wallet-bg-secondary);
+        border-radius: 4px;
+        border: 1px solid var(--wallet-border-color);
         padding: 0;
+        box-shadow: none;
         overflow: hidden;
-        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
 
         table {
             width: 100%;
@@ -517,21 +545,21 @@ $wallet-dark-danger: #ef4444;
 
         th {
             text-align: left;
-            padding: 18px 28px;
+            padding: 20px 30px;
             font-weight: 600;
-            color: #{$wallet-dark-text-muted};
-            border-bottom: 1px solid #{$wallet-dark-border-color};
-            background: #{$wallet-dark-card-bg-lighter};
-            font-size: 0.8rem;
+            color: var(--wallet-text-muted);
+            border-bottom: 1px solid var(--wallet-border-color);
+            background: var(--wallet-bg-color);
+            font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
         }
 
         td {
-            padding: 18px 28px;
-            border-bottom: 1px solid #{$wallet-dark-border-color};
-            color: #{$wallet-dark-text-secondary};
-            font-size: 1rem;
+            padding: 20px 30px;
+            border-bottom: 1px solid var(--wallet-border-color);
+            color: var(--wallet-text-color);
+            font-size: 1.1rem;
             font-weight: 500;
         }
 
@@ -544,6 +572,7 @@ $wallet-dark-danger: #ef4444;
     @media (max-width: 768px) {
         .woo-wallet-nav-tabs {
             flex-direction: column;
+            border-radius: 0 0 4px 4px;
         }
 
         .woo-wallet-nav-item-wrapper {
@@ -552,22 +581,23 @@ $wallet-dark-danger: #ef4444;
 
         .woo-wallet-nav-tab {
             border-right: none;
-            border-bottom: 1px solid #{$wallet-dark-border-color};
+            border-bottom: 1px solid var(--wallet-border-color);
         }
 
         .woo-wallet-submenu {
             position: static;
             display: none;
+            /* Hidden by default on mobile too, could use JS to toggle */
             box-shadow: none;
             width: 100%;
             opacity: 1;
             visibility: visible;
             transform: none;
-            background: #{$wallet-dark-card-bg-lighter};
+            background: var(--wallet-bg-elevated);
         }
 
         .woo-wallet-balance-card .woo-wallet-price {
-            font-size: 2.4rem;
+            font-size: 2.5rem;
         }
 
         .woo-wallet-referral-input-group {
@@ -577,11 +607,11 @@ $wallet-dark-danger: #ef4444;
 
         .woo-wallet-copy-btn {
             width: 100%;
-            margin-top: 12px;
+            margin-top: 10px;
         }
 
         .woo-wallet-referral-input-wrapper input[type="text"] {
-            padding-left: 46px !important;
+            padding-left: 45px !important;
         }
 
         .woo-wallet-content-area,
@@ -592,7 +622,7 @@ $wallet-dark-danger: #ef4444;
 
         .woo-wallet-transactions-table,
         .woo-wallet-referral-stats table {
-            min-width: 500px;
+            min-width: 600px;
         }
 
         .dt-controls {
@@ -611,9 +641,9 @@ $wallet-dark-danger: #ef4444;
         }
     }
 
-    // DataTables
+    // DataTables Overrides
     .dataTables_wrapper {
-        color: #{$wallet-dark-text-color};
+        color: var(--wallet-text-color);
 
         .dataTables_paginate {
             font-size: 14px;
@@ -623,38 +653,41 @@ $wallet-dark-danger: #ef4444;
         .dataTables_info {
             padding: 0 1rem !important;
             float: left;
-            color: #{$wallet-dark-text-muted};
+            color: var(--wallet-text-muted);
             font-size: 0.9rem;
         }
 
         .dataTables_paginate .paginate_button {
-            border-radius: 8px !important;
-            border: none !important;
-            color: #{$wallet-dark-text-secondary} !important;
+            border-radius: 4px !important;
+            border: 1px solid transparent !important;
+            color: var(--wallet-text-muted) !important;
             font-weight: 600;
             background: transparent !important;
             cursor: pointer;
             transition: all 0.2s;
-            padding: 8px 14px !important;
 
             &:hover {
-                background: #{$wallet-dark-card-bg-hover} !important;
-                color: #{$wallet-dark-text-color} !important;
+                background: var(--wallet-bg-elevated) !important;
+                color: var(--wallet-text-color) !important;
+                border: 1px solid var(--wallet-border-color) !important;
             }
 
             &.current,
             &.current:hover {
-                background: linear-gradient(135deg, #{$wallet-dark-primary-gradient-start} 0%, #{$wallet-dark-primary-gradient-end} 100%) !important;
-                color: #fff !important;
+                background: var(--wallet-primary-color) !important;
+                color: var(--wallet-text-color) !important;
+                border: 1px solid var(--wallet-primary-color) !important;
+                box-shadow: none;
             }
 
             &.disabled,
             &.disabled:hover,
             &.disabled:active {
-                color: #{$wallet-dark-text-muted} !important;
+                color: #444 !important;
                 background: transparent !important;
+                border: 1px solid transparent !important;
                 cursor: default;
-                opacity: 0.4;
+                box-shadow: none;
             }
         }
 
@@ -668,7 +701,7 @@ $wallet-dark-danger: #ef4444;
     // Length & Filter Controls
     .dataTables_length,
     .dataTables_filter {
-        color: #{$wallet-dark-text-color};
+        color: var(--wallet-text-color);
         display: inline-block;
         vertical-align: middle;
         padding: 0 1rem;
@@ -679,16 +712,20 @@ $wallet-dark-danger: #ef4444;
         float: left;
 
         select {
-            border: 1px solid #{$wallet-dark-border-color} !important;
-            border-radius: 8px !important;
+            border: 1px solid var(--wallet-border-color) !important;
+            border-radius: 4px !important;
             outline: none;
-            color: #{$wallet-dark-text-color};
-            background: #{$wallet-dark-input-bg};
+            color: var(--wallet-text-color);
+            background: var(--wallet-bg-color);
             cursor: pointer;
-            padding: 8px 12px;
 
             &:focus {
-                border-color: #{$wallet-dark-primary-color} !important;
+                border-color: var(--wallet-primary-color) !important;
+            }
+
+            option {
+                background: var(--wallet-bg-color);
+                color: var(--wallet-text-color);
             }
         }
     }
@@ -701,27 +738,32 @@ $wallet-dark-danger: #ef4444;
         }
 
         input {
-            border: 1px solid #{$wallet-dark-border-color} !important;
-            border-radius: 8px !important;
-            padding: 10px 14px 10px 36px !important;
+            border: 1px solid var(--wallet-border-color) !important;
+            border-radius: 4px !important;
+            padding: 8px 12px 8px 35px !important;
             outline: none;
-            color: #{$wallet-dark-text-color};
-            background: #{$wallet-dark-input-bg};
+            color: var(--wallet-text-color);
+            background: var(--wallet-bg-color);
             width: 200px;
             font-size: 14px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2371717a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2' ry='2'%3E%3C/rect%3E%3Cline x1='16' y1='2' x2='16' y2='6'%3E%3C/line%3E%3Cline x1='8' y1='2' x2='8' y2='6'%3E%3C/line%3E%3Cline x1='3' y1='10' x2='21' y2='10'%3E%3C/line%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2' ry='2'%3E%3C/rect%3E%3Cline x1='16' y1='2' x2='16' y2='6'%3E%3C/line%3E%3Cline x1='8' y1='2' x2='8' y2='6'%3E%3C/line%3E%3Cline x1='3' y1='10' x2='21' y2='10'%3E%3C/line%3E%3C/svg%3E");
             background-repeat: no-repeat;
-            background-position: 12px center;
+            background-position: 10px center;
 
             &:focus {
-                border-color: #{$wallet-dark-primary-color} !important;
+                border-color: var(--wallet-primary-color) !important;
+                background: var(--wallet-bg-elevated);
+            }
+
+            &::placeholder {
+                color: var(--wallet-text-muted);
             }
         }
     }
 
     // Table Styling
     table.dataTable.no-footer {
-        border-bottom: 1px solid #{$wallet-dark-border-color} !important;
+        border-bottom: 1px solid var(--wallet-border-color) !important;
         border-collapse: collapse !important;
         margin-top: 10px !important;
     }
@@ -734,35 +776,35 @@ $wallet-dark-danger: #ef4444;
 
     table.dataTable thead th,
     table.dataTable thead td {
-        border-bottom: 1px solid #{$wallet-dark-border-color} !important;
-        background: #{$wallet-dark-card-bg-lighter};
-        color: #{$wallet-dark-text-muted};
-        font-weight: 600;
+        border-bottom: 1px solid var(--wallet-border-color) !important;
+        background: var(--wallet-bg-color);
+        color: var(--wallet-text-muted);
+        font-weight: 700;
         text-transform: uppercase;
-        font-size: 0.8rem;
-        padding: 16px 22px !important;
-        letter-spacing: 0.5px;
+        font-size: 0.85rem;
+        padding: 15px 20px !important;
+        letter-spacing: 1px;
     }
 
     table.dataTable tbody th,
     table.dataTable tbody td {
-        padding: 18px 22px !important;
-        border-bottom: 1px solid #{$wallet-dark-border-color};
-        color: #{$wallet-dark-text-secondary};
-        font-size: 0.95rem;
+        padding: 15px 20px !important;
+        border-bottom: 1px solid var(--wallet-border-color);
+        color: var(--wallet-text-color);
+        font-size: 1rem;
         vertical-align: middle;
     }
 
     // Credit/Debit Colors
     #wc-wallet-transaction-details mark.credit {
         background: none;
-        color: #{$wallet-dark-success};
+        color: var(--wallet-success-color);
         font-weight: 700;
     }
 
     #wc-wallet-transaction-details mark.debit {
         background: none;
-        color: #{$wallet-dark-danger};
+        color: var(--wallet-alert-color);
         font-weight: 700;
     }
 
@@ -774,11 +816,11 @@ $wallet-dark-danger: #ef4444;
     }
 
     table.dataTable thead {
-        border-top: 1px solid #{$wallet-dark-border-color} !important;
+        border-top: 1px solid var(--wallet-border-color) !important;
     }
 
     table.dataTable tbody tr:hover {
-        background-color: #{$wallet-dark-card-bg-lighter} !important;
+        background-color: var(--wallet-bg-elevated) !important;
     }
 
     .dt-controls {
@@ -787,24 +829,19 @@ $wallet-dark-danger: #ef4444;
         align-items: center;
         margin: 1rem 0;
     }
-
-    // Empty state
-    .dataTables_empty {
-        color: #{$wallet-dark-text-muted} !important;
-        padding: 40px !important;
-    }
 }
 
-// Date Range Picker
+// Date Range Picker Overrides
 .daterangepicker {
-    background: #{$wallet-dark-card-bg} !important;
-    border: 1px solid #{$wallet-dark-border-color} !important;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
+    border: 1px solid $wallet-border-color !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5) !important;
     z-index: 99999 !important;
-    border-radius: 14px !important;
+    border-radius: 4px !important;
+    background: $wallet-bg-secondary !important;
+    color: #fff !important;
 
     .calendar-table {
-        background: transparent !important;
+        background: $wallet-bg-secondary !important;
         border: none !important;
     }
 
@@ -812,66 +849,65 @@ $wallet-dark-danger: #ef4444;
     td,
     th {
         border: 0 !important;
+        color: #fff !important;
+    }
+
+    td {
+        color: #ccc !important;
+
+        &.available:hover {
+            background: $wallet-bg-elevated !important;
+        }
+
+        &.off {
+            color: #444 !important;
+        }
     }
 
     td.active,
     td.active:hover {
-        background: linear-gradient(135deg, #{$wallet-dark-primary-gradient-start} 0%, #{$wallet-dark-primary-gradient-end} 100%) !important;
+        background-color: $wallet-primary-color !important;
         color: #fff !important;
     }
 
-    td.available:hover,
-    th.available:hover {
-        background: #{$wallet-dark-card-bg-hover} !important;
-        color: #{$wallet-dark-text-color} !important;
-    }
-
-    td.off,
-    td.off.in-range,
-    td.off.start-date,
-    td.off.end-date {
-        background: transparent !important;
-        color: #{$wallet-dark-text-muted} !important;
-    }
-
     .drp-buttons {
-        border-top: 1px solid #{$wallet-dark-border-color} !important;
-        padding: 14px !important;
+        border-top: 1px solid $wallet-border-color !important;
+        padding: 15px !important;
 
         .btn {
             font-weight: 600 !important;
-            padding: 10px 20px !important;
-            border-radius: 8px !important;
+            padding: 8px 20px !important;
+            border-radius: 4px !important;
             font-size: 13px !important;
             margin-left: 10px !important;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #{$wallet-dark-primary-gradient-start} 0%, #{$wallet-dark-primary-gradient-end} 100%) !important;
-            border-color: transparent !important;
+            background-color: $wallet-primary-color !important;
+            border-color: $wallet-primary-color !important;
             color: #fff !important;
         }
 
         .btn-default {
-            background-color: #{$wallet-dark-card-bg-lighter} !important;
-            border: 1px solid #{$wallet-dark-border-color} !important;
-            color: #{$wallet-dark-text-color} !important;
+            background-color: $wallet-bg-elevated !important;
+            border: 1px solid $wallet-border-color !important;
+            color: #fff !important;
         }
     }
 
-    .ranges li {
-        color: #{$wallet-dark-text-secondary} !important;
-        border-radius: 6px;
-        padding: 10px 12px !important;
-        
-        &.active {
-            background: linear-gradient(135deg, #{$wallet-dark-primary-gradient-start} 0%, #{$wallet-dark-primary-gradient-end} 100%) !important;
-            color: #fff !important;
-        }
-        
-        &:hover {
-            background-color: #{$wallet-dark-card-bg-hover} !important;
-            color: #{$wallet-dark-text-color} !important;
+    .ranges {
+        li {
+            color: #ccc !important;
+
+            &.active {
+                background-color: $wallet-primary-color !important;
+                color: #fff !important;
+            }
+
+            &:hover {
+                background-color: $wallet-bg-elevated !important;
+                color: #fff !important;
+            }
         }
     }
 
@@ -882,55 +918,51 @@ $wallet-dark-danger: #ef4444;
 
         td,
         th {
-            padding: 5px !important;
+            padding: 3px !important;
             font-size: 13px !important;
             border: none !important;
-            border-radius: 6px !important;
-            color: #{$wallet-dark-text-secondary} !important;
+            border-radius: 4px !important;
         }
     }
 
-    th.month,
-    .monthselect,
-    .yearselect {
+    th.month {
         font-weight: 600 !important;
-        color: #{$wallet-dark-text-color} !important;
-    }
-
-    .monthselect,
-    .yearselect {
-        background: #{$wallet-dark-input-bg} !important;
-        border-color: #{$wallet-dark-border-color} !important;
-        border-radius: 6px;
-        color: #{$wallet-dark-text-color} !important;
+        color: #fff !important;
     }
 
     th.prev,
     th.next {
-        color: #{$wallet-dark-text-secondary} !important;
+        color: #ccc !important;
 
         &:hover {
-            background: #{$wallet-dark-card-bg-hover} !important;
-            color: #{$wallet-dark-text-color} !important;
+            background: $wallet-bg-elevated !important;
         }
     }
 
     td.in-range {
-        background-color: rgba($wallet-dark-primary-color, 0.2) !important;
-        color: #{$wallet-dark-text-color} !important;
+        background-color: $wallet-bg-elevated !important;
+        color: #fff !important;
         border-radius: 0 !important;
     }
 
     td.start-date {
-        border-radius: 6px 0 0 6px !important;
+        border-radius: 4px 0 0 4px !important;
     }
 
     td.end-date {
-        border-radius: 0 6px 6px 0 !important;
+        border-radius: 0 4px 4px 0 !important;
     }
 
     td.start-date.end-date {
-        border-radius: 6px !important;
+        border-radius: 4px !important;
+    }
+
+    select.monthselect,
+    select.yearselect {
+        background: $wallet-bg-color !important;
+        color: #fff !important;
+        border: 1px solid $wallet-border-color !important;
+        border-radius: 4px !important;
     }
 
     @media (max-width: 480px) {
