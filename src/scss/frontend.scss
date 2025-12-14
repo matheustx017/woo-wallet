@@ -48,21 +48,21 @@ $wallet-dark-danger: #ef4444;
     content: "\e900";
 }
 
-/* Migrated from modern-dashboard.css */
+/* Migrated from modern-dashboard.css - DARK THEME DEFAULT */
 .woo-wallet-my-wallet-container {
-    // CSS Variables for runtime usage if needed
-    --wallet-primary-color: #{$wallet-primary-color};
-    --wallet-text-color: #{$wallet-text-color};
-    --wallet-bg-color: #{$wallet-bg-color};
-    --wallet-border-color: #{$wallet-border-color};
+    // CSS Variables - DARK THEME BY DEFAULT
+    --wallet-primary-color: #{$wallet-dark-primary-color};
+    --wallet-text-color: #{$wallet-dark-text-color};
+    --wallet-bg-color: #{$wallet-dark-bg-color};
+    --wallet-border-color: #{$wallet-dark-border-color};
 
-    color: var(--wallet-text-color);
+    color: #{$wallet-dark-text-color};
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
     display: block;
 
-    // Header
+    // Header - DARK
     .woo-wallet-header {
         margin-bottom: 25px;
         text-align: left;
@@ -71,47 +71,57 @@ $wallet-dark-danger: #ef4444;
             font-size: 1.8rem;
             font-weight: 700;
             margin: 0 0 8px;
-            color: #2c3e50;
+            color: #{$wallet-dark-text-color};
         }
 
         p {
-            color: #7f8c8d;
+            color: #{$wallet-dark-text-muted};
             margin: 0;
             font-size: 1rem;
         }
     }
 
-    // Top Section Wrapper
+    // Top Section Wrapper - DARK
     .woo-wallet-top-section {
         border-radius: 12px;
         overflow: visible;
-        /* Changed from hidden to allow submenu overflow */
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px #{$wallet-dark-border-color};
         margin-bottom: 40px;
-        background: #fff;
+        background: #{$wallet-dark-card-bg};
     }
 
-    // Balance Card
+    // Balance Card - DARK with gradient
     .woo-wallet-balance-card {
-        background: var(--wallet-primary-color);
+        background: linear-gradient(135deg, #{$wallet-dark-primary-gradient-start} 0%, #{$wallet-dark-primary-gradient-end} 100%);
         color: #fff;
         padding: 50px 30px;
         border-radius: 12px 12px 0 0;
-        /* Added radius directly */
         text-align: center;
         position: relative;
         margin-bottom: 0;
         width: 100%;
         box-sizing: border-box;
         box-shadow: none;
+        overflow: hidden;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
 
         h3 {
-            color: rgba(255, 255, 255, 0.95);
-            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.85rem;
             font-weight: 500;
             margin: 0 0 10px;
-            text-transform: none;
-            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .woo-wallet-price {
@@ -120,18 +130,17 @@ $wallet-dark-danger: #ef4444;
             margin: 0;
             color: #fff;
             line-height: 1.1;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
     }
 
-    /* Navigation Tabs */
+    /* Navigation Tabs - DARK */
     .woo-wallet-nav-tabs {
         display: flex;
         flex-wrap: wrap;
-        background: #f0f0f0;
+        background: #{$wallet-dark-card-bg};
         border-radius: 0 0 12px 12px;
-        /* Added radius directly */
         overflow: visible;
-        /* Changed from hidden to allow dropdown */
         margin-bottom: 0;
         width: 100%;
         box-sizing: border-box;
@@ -140,18 +149,15 @@ $wallet-dark-danger: #ef4444;
     .woo-wallet-nav-item-wrapper {
         flex: 1;
         position: relative;
-
-        /* Removed hover effect for click-based toggle */
     }
 
     .woo-wallet-nav-tab {
         display: flex;
-        /* Changed to flex for icon alignment */
         align-items: center;
         justify-content: center;
         padding: 20px 15px;
-        background: #f0f0f0;
-        color: #666;
+        background: #{$wallet-dark-card-bg};
+        color: #{$wallet-dark-text-muted};
         text-decoration: none !important;
         font-weight: 600;
         font-size: 1rem;
@@ -160,14 +166,14 @@ $wallet-dark-danger: #ef4444;
         white-space: nowrap;
         width: 100%;
         box-sizing: border-box;
-        border-right: 1px solid rgba(0, 0, 0, 0.05);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        border-right: 1px solid #{$wallet-dark-border-color};
+        border-bottom: 1px solid #{$wallet-dark-border-color};
 
         &:hover,
         &:focus,
         &:active {
-            background: #e5e5e5;
-            color: #333;
+            background: #{$wallet-dark-card-bg-hover};
+            color: #{$wallet-dark-text-color};
             outline: none;
             box-shadow: none;
         }
@@ -175,11 +181,10 @@ $wallet-dark-danger: #ef4444;
         &.active {
             color: var(--wallet-primary-color);
             box-shadow: none;
-            background: #e5e5e5;
+            background: #{$wallet-dark-card-bg-hover};
             outline: none;
         }
 
-        /* Icon spacing */
         >span:first-child {
             margin-right: 8px;
         }
@@ -202,27 +207,27 @@ $wallet-dark-danger: #ef4444;
         border-right: none;
     }
 
-    /* Submenu */
+    /* Submenu - DARK */
     .woo-wallet-submenu {
         display: none;
         position: absolute;
         top: 100%;
         left: 0;
         min-width: 200px;
-        background: #fff;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        background: #{$wallet-dark-card-bg};
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+        border: 1px solid #{$wallet-dark-border-color};
         z-index: 100;
         border-radius: 0 0 8px 8px;
         overflow: hidden;
-        /* Removed opacity/visibility transition for slideToggle compatibility */
 
         .woo-wallet-submenu-item {
             display: block;
             padding: 12px 20px;
-            color: #555;
+            color: #{$wallet-dark-text-muted};
             text-decoration: none !important;
             font-size: 0.95rem;
-            border-bottom: 1px solid #f5f5f5;
+            border-bottom: 1px solid #{$wallet-dark-border-color};
             text-align: left;
             transition: background 0.2s;
 
@@ -231,17 +236,17 @@ $wallet-dark-danger: #ef4444;
             }
 
             &:hover {
-                background: #f9f9f9;
+                background: #{$wallet-dark-card-bg-hover};
                 color: var(--wallet-primary-color);
             }
         }
     }
 
-    // Content Area
+    // Content Area - DARK
     .woo-wallet-content-area {
-        background: #fff;
+        background: transparent;
         padding: 0;
-        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+        box-shadow: none;
         overflow: hidden;
         width: 100%;
         box-sizing: border-box;
@@ -252,22 +257,22 @@ $wallet-dark-danger: #ef4444;
         margin: 0;
         font-size: 1.2rem;
         font-weight: 700;
-        border-bottom: 1px solid #eee;
-        background: #fff;
-        color: #2c3e50;
+        border-bottom: 1px solid #{$wallet-dark-border-color};
+        background: #{$wallet-dark-card-bg};
+        color: #{$wallet-dark-text-color};
     }
 
     .woo-wallet-form-wrapper .woo-wallet-section-title {
         padding: 25px 0px;
     }
 
-    // Transactions Table
+    // Transactions Table - DARK
     .woo-wallet-transactions-list {
-        background: #fff;
+        background: #{$wallet-dark-card-bg};
         border-radius: 12px;
-        border: 1px solid var(--wallet-border-color);
+        border: 1px solid #{$wallet-dark-border-color};
         padding: 0;
-        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         overflow: hidden;
     }
 
@@ -280,9 +285,9 @@ $wallet-dark-danger: #ef4444;
             text-align: left;
             padding: 20px 30px;
             font-weight: 600;
-            color: #7f8c8d;
-            border-bottom: 1px solid #eee;
-            background: #f9f9f9;
+            color: #{$wallet-dark-text-muted};
+            border-bottom: 1px solid #{$wallet-dark-border-color};
+            background: #{$wallet-dark-bg-color};
             font-size: 0.95rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -290,8 +295,8 @@ $wallet-dark-danger: #ef4444;
 
         td {
             padding: 20px 30px;
-            border-bottom: 1px solid #eee;
-            color: #2c3e50;
+            border-bottom: 1px solid #{$wallet-dark-border-color};
+            color: #{$wallet-dark-text-color};
             font-size: 1rem;
         }
 
@@ -300,7 +305,7 @@ $wallet-dark-danger: #ef4444;
         }
 
         tr:hover td {
-            background: #fafafa;
+            background: #{$wallet-dark-card-bg-hover};
         }
 
         .amount {
@@ -308,20 +313,21 @@ $wallet-dark-danger: #ef4444;
             text-align: right;
 
             &.credit {
-                color: #27ae60;
+                color: #{$wallet-dark-success};
             }
 
             &.debit {
-                color: #c0392b;
+                color: #{$wallet-dark-danger};
             }
         }
     }
 
-    // Forms
+    // Forms - DARK
     .woo-wallet-form-wrapper {
         padding: 40px;
-        border: 1px solid var(--wallet-border-color);
+        border: 1px solid #{$wallet-dark-border-color};
         border-radius: 12px;
+        background: #{$wallet-dark-card-bg};
 
         form {
             padding-top: 14px;
@@ -331,7 +337,7 @@ $wallet-dark-danger: #ef4444;
             display: block;
             margin-bottom: 10px;
             font-weight: 600;
-            color: #2c3e50;
+            color: #{$wallet-dark-text-color};
         }
 
         input[type="text"],
@@ -340,23 +346,29 @@ $wallet-dark-danger: #ef4444;
         select {
             width: 100%;
             padding: 15px;
-            border: 1px solid #e0e0e0;
+            border: 1px solid #{$wallet-dark-border-color};
             border-radius: 8px;
             margin-bottom: 25px;
             font-size: 1rem;
-            background: #f9f9f9;
+            background: #{$wallet-dark-input-bg};
+            color: #{$wallet-dark-text-color};
             box-sizing: border-box;
-            transition: border-color 0.3s ease;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
 
             &:focus {
                 border-color: var(--wallet-primary-color);
                 outline: none;
-                background: #fff;
+                background: #{$wallet-dark-input-bg};
+                box-shadow: 0 0 0 3px rgba($wallet-dark-primary-color, 0.15);
+            }
+
+            &::placeholder {
+                color: #{$wallet-dark-text-muted};
             }
         }
 
         input[type="submit"] {
-            background: var(--wallet-primary-color);
+            background: linear-gradient(135deg, #{$wallet-dark-primary-gradient-start} 0%, #{$wallet-dark-primary-gradient-end} 100%);
             color: #fff;
             border: none;
             padding: 15px 40px;
@@ -368,25 +380,25 @@ $wallet-dark-danger: #ef4444;
 
             &:hover {
                 transform: translateY(-2px);
-                box-shadow: 0 5px 15px rgba(241, 99, 76, 0.3);
+                box-shadow: 0 5px 20px rgba($wallet-dark-primary-color, 0.4);
             }
         }
     }
 
-    // Referral Page
+    // Referral Page - DARK
     .woo-wallet-referral-link-card {
-        background: #fff;
+        background: #{$wallet-dark-card-bg};
         padding: 30px;
         border-radius: 12px;
-        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         margin-bottom: 30px;
-        border: 1px solid var(--wallet-border-color);
+        border: 1px solid #{$wallet-dark-border-color};
         box-sizing: border-box;
 
         h3 {
             margin-top: 0;
             font-size: 1.1rem;
-            color: #2c3e50;
+            color: #{$wallet-dark-text-color};
             margin-bottom: 20px;
             font-weight: 600;
         }
@@ -409,7 +421,7 @@ $wallet-dark-danger: #ef4444;
             left: 15px;
             top: 50%;
             transform: translateY(-50%);
-            color: #999;
+            color: #{$wallet-dark-text-muted};
             font-family: "dashicons" !important;
             font-size: 20px;
             width: 20px;
@@ -421,11 +433,11 @@ $wallet-dark-danger: #ef4444;
         input[type="text"] {
             width: 100% !important;
             padding: 15px 15px 15px 45px !important;
-            border: 1px solid #e0e0e0 !important;
+            border: 1px solid #{$wallet-dark-border-color} !important;
             border-radius: 8px !important;
             font-size: 1rem !important;
-            color: #555 !important;
-            background: #f9f9f9 !important;
+            color: #{$wallet-dark-text-color} !important;
+            background: #{$wallet-dark-input-bg} !important;
             box-sizing: border-box !important;
             margin: 0 !important;
             height: auto !important;
@@ -434,7 +446,7 @@ $wallet-dark-danger: #ef4444;
     }
 
     .woo-wallet-copy-btn {
-        background: var(--wallet-primary-color);
+        background: linear-gradient(135deg, #{$wallet-dark-primary-gradient-start} 0%, #{$wallet-dark-primary-gradient-end} 100%);
         color: #fff;
         border: none;
         padding: 15px 30px;
@@ -457,8 +469,8 @@ $wallet-dark-danger: #ef4444;
             content: attr(data-tooltip);
             visibility: hidden;
             width: 140px;
-            background-color: #333;
-            color: #fff;
+            background-color: #{$wallet-dark-card-bg};
+            color: #{$wallet-dark-text-color};
             text-align: center;
             border-radius: 6px;
             padding: 8px;
@@ -472,7 +484,8 @@ $wallet-dark-danger: #ef4444;
             font-size: 0.85rem;
             font-weight: normal;
             pointer-events: none;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid #{$wallet-dark-border-color};
         }
 
         &::before {
@@ -484,7 +497,7 @@ $wallet-dark-danger: #ef4444;
             transform: translateX(-50%);
             border-width: 6px;
             border-style: solid;
-            border-color: #333 transparent transparent transparent;
+            border-color: #{$wallet-dark-card-bg} transparent transparent transparent;
             opacity: 0;
             transition: opacity 0.3s;
         }
@@ -496,13 +509,13 @@ $wallet-dark-danger: #ef4444;
         }
     }
 
-    // Referral Stats Table
+    // Referral Stats Table - DARK
     .woo-wallet-referral-stats {
-        background: #fff;
+        background: #{$wallet-dark-card-bg};
         border-radius: 12px;
-        border: 1px solid var(--wallet-border-color);
+        border: 1px solid #{$wallet-dark-border-color};
         padding: 0;
-        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         overflow: hidden;
 
         table {
@@ -516,9 +529,9 @@ $wallet-dark-danger: #ef4444;
             text-align: left;
             padding: 20px 30px;
             font-weight: 600;
-            color: #7f8c8d;
-            border-bottom: 1px solid #eee;
-            background: #f9f9f9;
+            color: #{$wallet-dark-text-muted};
+            border-bottom: 1px solid #{$wallet-dark-border-color};
+            background: #{$wallet-dark-bg-color};
             font-size: 0.95rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -526,8 +539,8 @@ $wallet-dark-danger: #ef4444;
 
         td {
             padding: 20px 30px;
-            border-bottom: 1px solid #eee;
-            color: #2c3e50;
+            border-bottom: 1px solid #{$wallet-dark-border-color};
+            color: #{$wallet-dark-text-color};
             font-size: 1.1rem;
             font-weight: 500;
         }
@@ -550,19 +563,18 @@ $wallet-dark-danger: #ef4444;
 
         .woo-wallet-nav-tab {
             border-right: none;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid #{$wallet-dark-border-color};
         }
 
         .woo-wallet-submenu {
             position: static;
             display: none;
-            /* Hidden by default on mobile too, could use JS to toggle */
             box-shadow: none;
             width: 100%;
             opacity: 1;
             visibility: visible;
             transform: none;
-            background: #f9f9f9;
+            background: #{$wallet-dark-bg-color};
         }
 
         .woo-wallet-balance-card .woo-wallet-price {
@@ -610,9 +622,9 @@ $wallet-dark-danger: #ef4444;
         }
     }
 
-    // DataTables Overrides
+    // DataTables Overrides - DARK
     .dataTables_wrapper {
-        color: var(--wallet-text-color);
+        color: #{$wallet-dark-text-color};
 
         .dataTables_paginate {
             font-size: 14px;
@@ -622,37 +634,37 @@ $wallet-dark-danger: #ef4444;
         .dataTables_info {
             padding: 0 1rem !important;
             float: left;
-            color: var(--wallet-text-color);
+            color: #{$wallet-dark-text-muted};
             font-size: 0.9rem;
         }
 
         .dataTables_paginate .paginate_button {
             border-radius: 6px !important;
             border: 1px solid transparent !important;
-            color: #555 !important;
+            color: #{$wallet-dark-text-muted} !important;
             font-weight: 600;
             background: transparent !important;
             cursor: pointer;
             transition: all 0.2s;
 
             &:hover {
-                background: #f0f0f0 !important;
-                color: #333 !important;
-                border: 1px solid #ddd !important;
+                background: #{$wallet-dark-card-bg-hover} !important;
+                color: #{$wallet-dark-text-color} !important;
+                border: 1px solid #{$wallet-dark-border-color} !important;
             }
 
             &.current,
             &.current:hover {
-                background: var(--wallet-primary-color) !important;
+                background: linear-gradient(135deg, #{$wallet-dark-primary-gradient-start} 0%, #{$wallet-dark-primary-gradient-end} 100%) !important;
                 color: #fff !important;
-                border: 1px solid var(--wallet-primary-color) !important;
-                box-shadow: 0 2px 5px rgba(72, 61, 224, 0.2);
+                border: 1px solid transparent !important;
+                box-shadow: 0 2px 5px rgba($wallet-dark-primary-color, 0.3);
             }
 
             &.disabled,
             &.disabled:hover,
             &.disabled:active {
-                color: #aaa !important;
+                color: #{$wallet-dark-border-color} !important;
                 background: transparent !important;
                 border: 1px solid transparent !important;
                 cursor: default;
@@ -667,10 +679,10 @@ $wallet-dark-danger: #ef4444;
         }
     }
 
-    // Length & Filter Controls
+    // Length & Filter Controls - DARK
     .dataTables_length,
     .dataTables_filter {
-        color: #2c3e50;
+        color: #{$wallet-dark-text-color};
         display: inline-block;
         vertical-align: middle;
         padding: 0 1rem;
@@ -681,11 +693,11 @@ $wallet-dark-danger: #ef4444;
         float: left;
 
         select {
-            border: 1px solid var(--wallet-border-color) !important;
+            border: 1px solid #{$wallet-dark-border-color} !important;
             border-radius: 6px !important;
             outline: none;
-            color: #555;
-            background: #fff;
+            color: #{$wallet-dark-text-color};
+            background: #{$wallet-dark-input-bg};
             cursor: pointer;
 
             &:focus {
@@ -702,28 +714,28 @@ $wallet-dark-danger: #ef4444;
         }
 
         input {
-            border: 1px solid var(--wallet-border-color) !important;
+            border: 1px solid #{$wallet-dark-border-color} !important;
             border-radius: 6px !important;
             padding: 8px 12px 8px 35px !important;
             outline: none;
-            color: #555;
-            background: #fff;
+            color: #{$wallet-dark-text-color};
+            background: #{$wallet-dark-input-bg};
             width: 200px;
             font-size: 14px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2' ry='2'%3E%3C/rect%3E%3Cline x1='16' y1='2' x2='16' y2='6'%3E%3C/line%3E%3Cline x1='8' y1='2' x2='8' y2='6'%3E%3C/line%3E%3Cline x1='3' y1='10' x2='21' y2='10'%3E%3C/line%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2' ry='2'%3E%3C/rect%3E%3Cline x1='16' y1='2' x2='16' y2='6'%3E%3C/line%3E%3Cline x1='8' y1='2' x2='8' y2='6'%3E%3C/line%3E%3Cline x1='3' y1='10' x2='21' y2='10'%3E%3C/line%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: 10px center;
 
             &:focus {
                 border-color: var(--wallet-primary-color) !important;
-                background: #fff;
+                background-color: #{$wallet-dark-input-bg};
             }
         }
     }
 
-    // Table Styling
+    // Table Styling - DARK
     table.dataTable.no-footer {
-        border-bottom: 1px solid var(--wallet-border-color) !important;
+        border-bottom: 1px solid #{$wallet-dark-border-color} !important;
         border-collapse: collapse !important;
         margin-top: 10px !important;
     }
@@ -736,9 +748,9 @@ $wallet-dark-danger: #ef4444;
 
     table.dataTable thead th,
     table.dataTable thead td {
-        border-bottom: 1px solid var(--wallet-border-color) !important;
-        background: #f9f9f9;
-        color: #7f8c8d;
+        border-bottom: 1px solid #{$wallet-dark-border-color} !important;
+        background: #{$wallet-dark-bg-color};
+        color: #{$wallet-dark-text-muted};
         font-weight: 700;
         text-transform: uppercase;
         font-size: 0.85rem;
@@ -749,22 +761,22 @@ $wallet-dark-danger: #ef4444;
     table.dataTable tbody th,
     table.dataTable tbody td {
         padding: 15px 20px !important;
-        border-bottom: 1px solid var(--wallet-border-color);
-        color: #2c3e50;
+        border-bottom: 1px solid #{$wallet-dark-border-color};
+        color: #{$wallet-dark-text-color};
         font-size: 1rem;
         vertical-align: middle;
     }
 
-    // Credit/Debit Colors
+    // Credit/Debit Colors - DARK
     #wc-wallet-transaction-details mark.credit {
         background: none;
-        color: #27ae60;
+        color: #{$wallet-dark-success};
         font-weight: 700;
     }
 
     #wc-wallet-transaction-details mark.debit {
         background: none;
-        color: #c0392b;
+        color: #{$wallet-dark-danger};
         font-weight: 700;
     }
 
@@ -776,11 +788,11 @@ $wallet-dark-danger: #ef4444;
     }
 
     table.dataTable thead {
-        border-top: 1px solid var(--wallet-border-color) !important;
+        border-top: 1px solid #{$wallet-dark-border-color} !important;
     }
 
     table.dataTable tbody tr:hover {
-        background-color: #fafafa !important;
+        background-color: #{$wallet-dark-card-bg-hover} !important;
     }
 
     .dt-controls {
@@ -789,17 +801,23 @@ $wallet-dark-danger: #ef4444;
         align-items: center;
         margin: 1rem 0;
     }
+
+    // Empty state message
+    .dataTables_empty {
+        color: #{$wallet-dark-text-muted} !important;
+    }
 }
 
-// Date Range Picker Overrides
+// Date Range Picker Overrides - DARK THEME
 .daterangepicker {
-    border: 1px solid $wallet-border-color !important;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15) !important;
+    background: #{$wallet-dark-card-bg} !important;
+    border: 1px solid #{$wallet-dark-border-color} !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4) !important;
     z-index: 99999 !important;
     border-radius: 12px !important;
 
     .calendar-table {
-        background: #fff !important;
+        background: #{$wallet-dark-card-bg} !important;
         border: none !important;
     }
 
@@ -811,11 +829,26 @@ $wallet-dark-danger: #ef4444;
 
     td.active,
     td.active:hover {
-        background-color: $wallet-primary-color !important;
+        background-color: #{$wallet-dark-primary-color} !important;
+        color: #fff !important;
+    }
+
+    td.available:hover,
+    th.available:hover {
+        background: #{$wallet-dark-card-bg-hover} !important;
+        color: #{$wallet-dark-text-color} !important;
+    }
+
+    td.off,
+    td.off.in-range,
+    td.off.start-date,
+    td.off.end-date {
+        background: transparent !important;
+        color: #{$wallet-dark-border-color} !important;
     }
 
     .drp-buttons {
-        border-top: 1px solid $wallet-border-color !important;
+        border-top: 1px solid #{$wallet-dark-border-color} !important;
         padding: 15px !important;
 
         .btn {
@@ -827,24 +860,30 @@ $wallet-dark-danger: #ef4444;
         }
 
         .btn-primary {
-            background-color: $wallet-primary-color !important;
-            border-color: $wallet-primary-color !important;
+            background: linear-gradient(135deg, #{$wallet-dark-primary-gradient-start} 0%, #{$wallet-dark-primary-gradient-end} 100%) !important;
+            border-color: transparent !important;
             color: #fff !important;
         }
 
         .btn-default {
-            background-color: $wallet-bg-color !important;
-            border: 1px solid #ddd !important;
-            color: #333 !important;
+            background-color: #{$wallet-dark-card-bg-hover} !important;
+            border: 1px solid #{$wallet-dark-border-color} !important;
+            color: #{$wallet-dark-text-color} !important;
         }
     }
 
-    .ranges li.active {
-        background-color: $wallet-primary-color !important;
-    }
-
-    .ranges li:hover {
-        background-color: $wallet-bg-color !important;
+    .ranges li {
+        color: #{$wallet-dark-text-muted} !important;
+        
+        &.active {
+            background-color: #{$wallet-dark-primary-color} !important;
+            color: #fff !important;
+        }
+        
+        &:hover {
+            background-color: #{$wallet-dark-card-bg-hover} !important;
+            color: #{$wallet-dark-text-color} !important;
+        }
     }
 
     table {
@@ -858,17 +897,36 @@ $wallet-dark-danger: #ef4444;
             font-size: 13px !important;
             border: none !important;
             border-radius: 4px !important;
+            color: #{$wallet-dark-text-color} !important;
         }
     }
 
-    th.month {
+    th.month,
+    .monthselect,
+    .yearselect {
         font-weight: 600 !important;
-        color: #2c3e50 !important;
+        color: #{$wallet-dark-text-color} !important;
+    }
+
+    .monthselect,
+    .yearselect {
+        background: #{$wallet-dark-input-bg} !important;
+        border-color: #{$wallet-dark-border-color} !important;
+    }
+
+    th.prev,
+    th.next {
+        color: #{$wallet-dark-text-muted} !important;
+
+        &:hover {
+            background: #{$wallet-dark-card-bg-hover} !important;
+            color: #{$wallet-dark-text-color} !important;
+        }
     }
 
     td.in-range {
-        background-color: #f0f0f0 !important;
-        color: #333 !important;
+        background-color: rgba($wallet-dark-primary-color, 0.2) !important;
+        color: #{$wallet-dark-text-color} !important;
         border-radius: 0 !important;
     }
 
@@ -897,676 +955,4 @@ $wallet-dark-danger: #ef4444;
     }
 }
 
-// ===========================================
-// DARK THEME STYLES
-// ===========================================
-// Auto-detect dark themes via common dark mode classes/attributes
-// or use @media (prefers-color-scheme: dark)
-
-// Dark theme mixin for reusability
-@mixin wallet-dark-theme {
-    .woo-wallet-my-wallet-container {
-        --wallet-primary-color: #{$wallet-dark-primary-color};
-        --wallet-text-color: #{$wallet-dark-text-color};
-        --wallet-bg-color: #{$wallet-dark-bg-color};
-        --wallet-border-color: #{$wallet-dark-border-color};
-        
-        color: var(--wallet-text-color);
-        
-        // Header
-        .woo-wallet-header {
-            h2 {
-                color: #{$wallet-dark-text-color};
-                background: linear-gradient(135deg, #fff 0%, #{$wallet-dark-text-muted} 100%);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                background-clip: text;
-            }
-            
-            p {
-                color: #{$wallet-dark-text-muted};
-            }
-        }
-        
-        // Top Section
-        .woo-wallet-top-section {
-            background: #{$wallet-dark-card-bg};
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3),
-                        0 0 0 1px #{$wallet-dark-border-color};
-        }
-        
-        // Balance Card with gradient
-        .woo-wallet-balance-card {
-            background: linear-gradient(135deg, #{$wallet-dark-primary-gradient-start} 0%, #{$wallet-dark-primary-gradient-end} 100%);
-            position: relative;
-            overflow: hidden;
-            
-            &::before {
-                content: '';
-                position: absolute;
-                top: -50%;
-                right: -50%;
-                width: 100%;
-                height: 100%;
-                background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-                pointer-events: none;
-            }
-            
-            h3 {
-                color: rgba(255, 255, 255, 0.85);
-                text-transform: uppercase;
-                letter-spacing: 2px;
-                font-size: 0.85rem;
-            }
-            
-            .woo-wallet-price {
-                color: #fff;
-                text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            }
-        }
-        
-        // Navigation Tabs
-        .woo-wallet-nav-tabs {
-            background: #{$wallet-dark-card-bg};
-        }
-        
-        .woo-wallet-nav-tab {
-            background: #{$wallet-dark-card-bg};
-            color: #{$wallet-dark-text-muted};
-            border-color: #{$wallet-dark-border-color};
-            
-            &:hover,
-            &:focus,
-            &:active {
-                background: #{$wallet-dark-card-bg-hover};
-                color: #{$wallet-dark-text-color};
-            }
-            
-            &.active {
-                background: #{$wallet-dark-card-bg-hover};
-                color: var(--wallet-primary-color);
-            }
-        }
-        
-        // Submenu
-        .woo-wallet-submenu {
-            background: #{$wallet-dark-card-bg};
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-            border: 1px solid #{$wallet-dark-border-color};
-            
-            .woo-wallet-submenu-item {
-                color: #{$wallet-dark-text-muted};
-                border-bottom-color: #{$wallet-dark-border-color};
-                
-                &:hover {
-                    background: #{$wallet-dark-card-bg-hover};
-                    color: var(--wallet-primary-color);
-                }
-            }
-        }
-        
-        // Content Area
-        .woo-wallet-content-area {
-            background: transparent;
-            box-shadow: none;
-        }
-        
-        // Section Title
-        .woo-wallet-section-title {
-            background: #{$wallet-dark-card-bg};
-            color: #{$wallet-dark-text-color};
-            border-bottom-color: #{$wallet-dark-border-color};
-        }
-        
-        // Transactions List
-        .woo-wallet-transactions-list {
-            background: #{$wallet-dark-card-bg};
-            border-color: #{$wallet-dark-border-color};
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        }
-        
-        // Transactions Table
-        .woo-wallet-transactions-table {
-            th {
-                background: #{$wallet-dark-bg-color};
-                color: #{$wallet-dark-text-muted};
-                border-bottom-color: #{$wallet-dark-border-color};
-            }
-            
-            td {
-                color: #{$wallet-dark-text-color};
-                border-bottom-color: #{$wallet-dark-border-color};
-            }
-            
-            tr:hover td {
-                background: #{$wallet-dark-card-bg-hover};
-            }
-            
-            .amount {
-                &.credit {
-                    color: #{$wallet-dark-success};
-                }
-                
-                &.debit {
-                    color: #{$wallet-dark-danger};
-                }
-            }
-        }
-        
-        // Forms
-        .woo-wallet-form-wrapper {
-            background: #{$wallet-dark-card-bg};
-            border-color: #{$wallet-dark-border-color};
-            
-            label {
-                color: #{$wallet-dark-text-color};
-            }
-            
-            input[type="text"],
-            input[type="number"],
-            textarea,
-            select {
-                background: #{$wallet-dark-input-bg};
-                border-color: #{$wallet-dark-border-color};
-                color: #{$wallet-dark-text-color};
-                
-                &:focus {
-                    border-color: var(--wallet-primary-color);
-                    background: #{$wallet-dark-input-bg};
-                    box-shadow: 0 0 0 3px rgba($wallet-dark-primary-color, 0.15);
-                }
-                
-                &::placeholder {
-                    color: #{$wallet-dark-text-muted};
-                }
-            }
-            
-            input[type="submit"] {
-                background: linear-gradient(135deg, #{$wallet-dark-primary-gradient-start} 0%, #{$wallet-dark-primary-gradient-end} 100%);
-                
-                &:hover {
-                    box-shadow: 0 5px 20px rgba($wallet-dark-primary-color, 0.4);
-                }
-            }
-        }
-        
-        // Referral Card
-        .woo-wallet-referral-link-card {
-            background: #{$wallet-dark-card-bg};
-            border-color: #{$wallet-dark-border-color};
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            
-            h3 {
-                color: #{$wallet-dark-text-color};
-            }
-        }
-        
-        .woo-wallet-referral-input-wrapper {
-            .dashicons {
-                color: #{$wallet-dark-text-muted};
-            }
-            
-            input[type="text"] {
-                background: #{$wallet-dark-input-bg} !important;
-                border-color: #{$wallet-dark-border-color} !important;
-                color: #{$wallet-dark-text-color} !important;
-            }
-        }
-        
-        .woo-wallet-copy-btn {
-            background: linear-gradient(135deg, #{$wallet-dark-primary-gradient-start} 0%, #{$wallet-dark-primary-gradient-end} 100%);
-        }
-        
-        // Referral Stats
-        .woo-wallet-referral-stats {
-            background: #{$wallet-dark-card-bg};
-            border-color: #{$wallet-dark-border-color};
-            
-            th {
-                background: #{$wallet-dark-bg-color};
-                color: #{$wallet-dark-text-muted};
-                border-bottom-color: #{$wallet-dark-border-color};
-            }
-            
-            td {
-                color: #{$wallet-dark-text-color};
-                border-bottom-color: #{$wallet-dark-border-color};
-            }
-        }
-        
-        // DataTables Dark Overrides
-        .dataTables_wrapper {
-            color: #{$wallet-dark-text-color};
-            
-            .dataTables_info {
-                color: #{$wallet-dark-text-muted};
-            }
-            
-            .dataTables_paginate .paginate_button {
-                color: #{$wallet-dark-text-muted} !important;
-                
-                &:hover {
-                    background: #{$wallet-dark-card-bg-hover} !important;
-                    color: #{$wallet-dark-text-color} !important;
-                    border-color: #{$wallet-dark-border-color} !important;
-                }
-                
-                &.current,
-                &.current:hover {
-                    background: linear-gradient(135deg, #{$wallet-dark-primary-gradient-start} 0%, #{$wallet-dark-primary-gradient-end} 100%) !important;
-                    color: #fff !important;
-                    border-color: transparent !important;
-                }
-                
-                &.disabled,
-                &.disabled:hover {
-                    color: #{$wallet-dark-border-color} !important;
-                }
-            }
-        }
-        
-        .dataTables_length,
-        .dataTables_filter {
-            color: #{$wallet-dark-text-color};
-            
-            select {
-                background: #{$wallet-dark-input-bg} !important;
-                border-color: #{$wallet-dark-border-color} !important;
-                color: #{$wallet-dark-text-color} !important;
-            }
-            
-            input {
-                background: #{$wallet-dark-input-bg} !important;
-                border-color: #{$wallet-dark-border-color} !important;
-                color: #{$wallet-dark-text-color} !important;
-                
-                &:focus {
-                    border-color: var(--wallet-primary-color) !important;
-                }
-            }
-        }
-        
-        // DataTable Styling
-        table.dataTable.no-footer {
-            border-bottom-color: #{$wallet-dark-border-color} !important;
-        }
-        
-        table.dataTable thead th,
-        table.dataTable thead td {
-            background: #{$wallet-dark-bg-color} !important;
-            color: #{$wallet-dark-text-muted} !important;
-            border-bottom-color: #{$wallet-dark-border-color} !important;
-        }
-        
-        table.dataTable tbody th,
-        table.dataTable tbody td {
-            color: #{$wallet-dark-text-color} !important;
-            border-bottom-color: #{$wallet-dark-border-color} !important;
-        }
-        
-        table.dataTable thead {
-            border-top-color: #{$wallet-dark-border-color} !important;
-        }
-        
-        table.dataTable tbody tr:hover {
-            background-color: #{$wallet-dark-card-bg-hover} !important;
-        }
-        
-        // Credit/Debit marks
-        #wc-wallet-transaction-details mark.credit {
-            color: #{$wallet-dark-success} !important;
-        }
-        
-        #wc-wallet-transaction-details mark.debit {
-            color: #{$wallet-dark-danger} !important;
-        }
-        
-        // Empty state
-        .dataTables_empty {
-            color: #{$wallet-dark-text-muted} !important;
-        }
-    }
-    
-    // DateRangePicker Dark Theme
-    .daterangepicker {
-        background: #{$wallet-dark-card-bg} !important;
-        border-color: #{$wallet-dark-border-color} !important;
-        
-        .calendar-table {
-            background: #{$wallet-dark-card-bg} !important;
-        }
-        
-        td.available:hover,
-        th.available:hover {
-            background: #{$wallet-dark-card-bg-hover} !important;
-            color: #{$wallet-dark-text-color} !important;
-        }
-        
-        td.off,
-        td.off.in-range,
-        td.off.start-date,
-        td.off.end-date {
-            background: transparent !important;
-            color: #{$wallet-dark-border-color} !important;
-        }
-        
-        td.in-range {
-            background-color: rgba($wallet-dark-primary-color, 0.2) !important;
-            color: #{$wallet-dark-text-color} !important;
-        }
-        
-        td.active,
-        td.active:hover {
-            background: #{$wallet-dark-primary-color} !important;
-        }
-        
-        .drp-buttons {
-            border-top-color: #{$wallet-dark-border-color} !important;
-            
-            .btn-default {
-                background: #{$wallet-dark-card-bg-hover} !important;
-                border-color: #{$wallet-dark-border-color} !important;
-                color: #{$wallet-dark-text-color} !important;
-            }
-            
-            .btn-primary {
-                background: linear-gradient(135deg, #{$wallet-dark-primary-gradient-start} 0%, #{$wallet-dark-primary-gradient-end} 100%) !important;
-                border-color: transparent !important;
-            }
-        }
-        
-        th.month,
-        .monthselect,
-        .yearselect {
-            color: #{$wallet-dark-text-color} !important;
-        }
-        
-        .monthselect,
-        .yearselect {
-            background: #{$wallet-dark-input-bg} !important;
-            border-color: #{$wallet-dark-border-color} !important;
-        }
-        
-        .ranges li {
-            color: #{$wallet-dark-text-muted} !important;
-            
-            &:hover {
-                background: #{$wallet-dark-card-bg-hover} !important;
-                color: #{$wallet-dark-text-color} !important;
-            }
-            
-            &.active {
-                background: #{$wallet-dark-primary-color} !important;
-                color: #fff !important;
-            }
-        }
-        
-        th.prev,
-        th.next {
-            color: #{$wallet-dark-text-muted} !important;
-            
-            &:hover {
-                background: #{$wallet-dark-card-bg-hover} !important;
-                color: #{$wallet-dark-text-color} !important;
-            }
-        }
-        
-        td,
-        th {
-            color: #{$wallet-dark-text-color} !important;
-        }
-    }
-}
-
-// ===========================================
-// DARK THEME IS NOW THE DEFAULT
-// ===========================================
-// Apply dark theme by default (for dark websites)
-@include wallet-dark-theme;
-
-// Light theme override (only if explicitly requested)
-body.light,
-body.light-mode,
-body.light-theme,
-html.light,
-html[data-theme="light"],
-body[data-theme="light"],
-.woo-wallet-light-theme {
-    .woo-wallet-my-wallet-container {
-        --wallet-primary-color: #{$wallet-primary-color};
-        --wallet-text-color: #{$wallet-text-color};
-        --wallet-bg-color: #{$wallet-bg-color};
-        --wallet-border-color: #{$wallet-border-color};
-        
-        color: var(--wallet-text-color);
-        
-        .woo-wallet-header h2 {
-            color: #2c3e50;
-            background: none;
-            -webkit-text-fill-color: unset;
-        }
-        
-        .woo-wallet-header p {
-            color: #7f8c8d;
-        }
-        
-        .woo-wallet-top-section {
-            background: #fff;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-        }
-        
-        .woo-wallet-balance-card {
-            background: var(--wallet-primary-color);
-        }
-        
-        .woo-wallet-nav-tabs {
-            background: #f0f0f0;
-        }
-        
-        .woo-wallet-nav-tab {
-            background: #f0f0f0;
-            color: #666;
-            
-            &:hover, &:focus, &:active {
-                background: #e5e5e5;
-                color: #333;
-            }
-            
-            &.active {
-                background: #e5e5e5;
-                color: var(--wallet-primary-color);
-            }
-        }
-        
-        .woo-wallet-submenu {
-            background: #fff;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            border: none;
-            
-            .woo-wallet-submenu-item {
-                color: #555;
-                border-bottom-color: #f5f5f5;
-                
-                &:hover {
-                    background: #f9f9f9;
-                }
-            }
-        }
-        
-        .woo-wallet-content-area {
-            background: #fff;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
-        }
-        
-        .woo-wallet-section-title {
-            background: #fff;
-            color: #2c3e50;
-            border-bottom-color: #eee;
-        }
-        
-        .woo-wallet-transactions-list {
-            background: #fff;
-            border-color: #eee;
-        }
-        
-        .woo-wallet-transactions-table {
-            th {
-                background: #f9f9f9;
-                color: #7f8c8d;
-                border-bottom-color: #eee;
-            }
-            
-            td {
-                color: #2c3e50;
-                border-bottom-color: #eee;
-            }
-            
-            tr:hover td {
-                background: #fafafa;
-            }
-            
-            .amount.credit { color: #27ae60; }
-            .amount.debit { color: #c0392b; }
-        }
-        
-        .woo-wallet-form-wrapper {
-            background: transparent;
-            border-color: #eee;
-            
-            label { color: #2c3e50; }
-            
-            input[type="text"],
-            input[type="number"],
-            textarea,
-            select {
-                background: #f9f9f9;
-                border-color: #e0e0e0;
-                color: #333;
-                
-                &:focus {
-                    background: #fff;
-                    box-shadow: none;
-                }
-            }
-            
-            input[type="submit"] {
-                background: var(--wallet-primary-color);
-            }
-        }
-        
-        .woo-wallet-referral-link-card {
-            background: #fff;
-            border-color: #eee;
-            
-            h3 { color: #2c3e50; }
-        }
-        
-        .woo-wallet-referral-input-wrapper {
-            .dashicons { color: #999; }
-            
-            input[type="text"] {
-                background: #f9f9f9 !important;
-                border-color: #e0e0e0 !important;
-                color: #555 !important;
-            }
-        }
-        
-        .woo-wallet-referral-stats {
-            background: #fff;
-            border-color: #eee;
-            
-            th {
-                background: #f9f9f9;
-                color: #7f8c8d;
-            }
-            
-            td {
-                color: #2c3e50;
-            }
-        }
-        
-        // DataTables light
-        .dataTables_wrapper {
-            color: #333;
-            
-            .dataTables_info { color: #333; }
-            
-            .dataTables_paginate .paginate_button {
-                color: #555 !important;
-                
-                &:hover {
-                    background: #f0f0f0 !important;
-                    color: #333 !important;
-                    border-color: #ddd !important;
-                }
-                
-                &.current, &.current:hover {
-                    background: var(--wallet-primary-color) !important;
-                    color: #fff !important;
-                }
-                
-                &.disabled { color: #aaa !important; }
-            }
-        }
-        
-        .dataTables_length select,
-        .dataTables_filter input {
-            background: #fff !important;
-            border-color: #eee !important;
-            color: #555 !important;
-        }
-        
-        table.dataTable thead th,
-        table.dataTable thead td {
-            background: #f9f9f9 !important;
-            color: #7f8c8d !important;
-            border-bottom-color: #eee !important;
-        }
-        
-        table.dataTable tbody th,
-        table.dataTable tbody td {
-            color: #2c3e50 !important;
-            border-bottom-color: #eee !important;
-        }
-        
-        table.dataTable tbody tr:hover {
-            background-color: #fafafa !important;
-        }
-        
-        #wc-wallet-transaction-details mark.credit { color: #27ae60 !important; }
-        #wc-wallet-transaction-details mark.debit { color: #c0392b !important; }
-    }
-    
-    // DateRangePicker light
-    .daterangepicker {
-        background: #fff !important;
-        border-color: #eee !important;
-        
-        .calendar-table { background: #fff !important; }
-        
-        td.in-range {
-            background-color: #f0f0f0 !important;
-            color: #333 !important;
-        }
-        
-        .drp-buttons {
-            border-top-color: #eee !important;
-            
-            .btn-default {
-                background: #f4f6f8 !important;
-                border-color: #ddd !important;
-                color: #333 !important;
-            }
-        }
-        
-        th.month { color: #2c3e50 !important; }
-        
-        .ranges li {
-            color: #333 !important;
-            
-            &:hover { background: #f4f6f8 !important; }
-        }
-        
-        td, th { color: #333 !important; }
-    }
-}
+// End of dark theme styles
