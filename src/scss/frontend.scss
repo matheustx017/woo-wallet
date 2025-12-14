@@ -1318,31 +1318,255 @@ $wallet-dark-danger: #ef4444;
     }
 }
 
-// Apply dark theme via common dark mode selectors
-// Supports: body classes, html attributes, data-theme attributes
-body.dark,
-body.dark-mode,
-body.dark-theme,
-body.theme-dark,
-html.dark,
-html.dark-mode,
-html[data-theme="dark"],
-body[data-theme="dark"],
-.dark-mode,
-.theme-dark,
-[data-bs-theme="dark"] {
-    @include wallet-dark-theme;
-}
+// ===========================================
+// DARK THEME IS NOW THE DEFAULT
+// ===========================================
+// Apply dark theme by default (for dark websites)
+@include wallet-dark-theme;
 
-// System preference dark mode
-@media (prefers-color-scheme: dark) {
-    // Only apply if no explicit theme class is set
-    body:not(.light):not(.light-mode):not(.light-theme):not([data-theme="light"]) {
-        @include wallet-dark-theme;
+// Light theme override (only if explicitly requested)
+body.light,
+body.light-mode,
+body.light-theme,
+html.light,
+html[data-theme="light"],
+body[data-theme="light"],
+.woo-wallet-light-theme {
+    .woo-wallet-my-wallet-container {
+        --wallet-primary-color: #{$wallet-primary-color};
+        --wallet-text-color: #{$wallet-text-color};
+        --wallet-bg-color: #{$wallet-bg-color};
+        --wallet-border-color: #{$wallet-border-color};
+        
+        color: var(--wallet-text-color);
+        
+        .woo-wallet-header h2 {
+            color: #2c3e50;
+            background: none;
+            -webkit-text-fill-color: unset;
+        }
+        
+        .woo-wallet-header p {
+            color: #7f8c8d;
+        }
+        
+        .woo-wallet-top-section {
+            background: #fff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .woo-wallet-balance-card {
+            background: var(--wallet-primary-color);
+        }
+        
+        .woo-wallet-nav-tabs {
+            background: #f0f0f0;
+        }
+        
+        .woo-wallet-nav-tab {
+            background: #f0f0f0;
+            color: #666;
+            
+            &:hover, &:focus, &:active {
+                background: #e5e5e5;
+                color: #333;
+            }
+            
+            &.active {
+                background: #e5e5e5;
+                color: var(--wallet-primary-color);
+            }
+        }
+        
+        .woo-wallet-submenu {
+            background: #fff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: none;
+            
+            .woo-wallet-submenu-item {
+                color: #555;
+                border-bottom-color: #f5f5f5;
+                
+                &:hover {
+                    background: #f9f9f9;
+                }
+            }
+        }
+        
+        .woo-wallet-content-area {
+            background: #fff;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+        }
+        
+        .woo-wallet-section-title {
+            background: #fff;
+            color: #2c3e50;
+            border-bottom-color: #eee;
+        }
+        
+        .woo-wallet-transactions-list {
+            background: #fff;
+            border-color: #eee;
+        }
+        
+        .woo-wallet-transactions-table {
+            th {
+                background: #f9f9f9;
+                color: #7f8c8d;
+                border-bottom-color: #eee;
+            }
+            
+            td {
+                color: #2c3e50;
+                border-bottom-color: #eee;
+            }
+            
+            tr:hover td {
+                background: #fafafa;
+            }
+            
+            .amount.credit { color: #27ae60; }
+            .amount.debit { color: #c0392b; }
+        }
+        
+        .woo-wallet-form-wrapper {
+            background: transparent;
+            border-color: #eee;
+            
+            label { color: #2c3e50; }
+            
+            input[type="text"],
+            input[type="number"],
+            textarea,
+            select {
+                background: #f9f9f9;
+                border-color: #e0e0e0;
+                color: #333;
+                
+                &:focus {
+                    background: #fff;
+                    box-shadow: none;
+                }
+            }
+            
+            input[type="submit"] {
+                background: var(--wallet-primary-color);
+            }
+        }
+        
+        .woo-wallet-referral-link-card {
+            background: #fff;
+            border-color: #eee;
+            
+            h3 { color: #2c3e50; }
+        }
+        
+        .woo-wallet-referral-input-wrapper {
+            .dashicons { color: #999; }
+            
+            input[type="text"] {
+                background: #f9f9f9 !important;
+                border-color: #e0e0e0 !important;
+                color: #555 !important;
+            }
+        }
+        
+        .woo-wallet-referral-stats {
+            background: #fff;
+            border-color: #eee;
+            
+            th {
+                background: #f9f9f9;
+                color: #7f8c8d;
+            }
+            
+            td {
+                color: #2c3e50;
+            }
+        }
+        
+        // DataTables light
+        .dataTables_wrapper {
+            color: #333;
+            
+            .dataTables_info { color: #333; }
+            
+            .dataTables_paginate .paginate_button {
+                color: #555 !important;
+                
+                &:hover {
+                    background: #f0f0f0 !important;
+                    color: #333 !important;
+                    border-color: #ddd !important;
+                }
+                
+                &.current, &.current:hover {
+                    background: var(--wallet-primary-color) !important;
+                    color: #fff !important;
+                }
+                
+                &.disabled { color: #aaa !important; }
+            }
+        }
+        
+        .dataTables_length select,
+        .dataTables_filter input {
+            background: #fff !important;
+            border-color: #eee !important;
+            color: #555 !important;
+        }
+        
+        table.dataTable thead th,
+        table.dataTable thead td {
+            background: #f9f9f9 !important;
+            color: #7f8c8d !important;
+            border-bottom-color: #eee !important;
+        }
+        
+        table.dataTable tbody th,
+        table.dataTable tbody td {
+            color: #2c3e50 !important;
+            border-bottom-color: #eee !important;
+        }
+        
+        table.dataTable tbody tr:hover {
+            background-color: #fafafa !important;
+        }
+        
+        #wc-wallet-transaction-details mark.credit { color: #27ae60 !important; }
+        #wc-wallet-transaction-details mark.debit { color: #c0392b !important; }
     }
-}
-
-// Force dark theme class for manual override
-.woo-wallet-dark-theme {
-    @include wallet-dark-theme;
+    
+    // DateRangePicker light
+    .daterangepicker {
+        background: #fff !important;
+        border-color: #eee !important;
+        
+        .calendar-table { background: #fff !important; }
+        
+        td.in-range {
+            background-color: #f0f0f0 !important;
+            color: #333 !important;
+        }
+        
+        .drp-buttons {
+            border-top-color: #eee !important;
+            
+            .btn-default {
+                background: #f4f6f8 !important;
+                border-color: #ddd !important;
+                color: #333 !important;
+            }
+        }
+        
+        th.month { color: #2c3e50 !important; }
+        
+        .ranges li {
+            color: #333 !important;
+            
+            &:hover { background: #f4f6f8 !important; }
+        }
+        
+        td, th { color: #333 !important; }
+    }
 }
