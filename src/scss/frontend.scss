@@ -24,11 +24,25 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-// Variables
+// Variables - Light Theme
 $wallet-primary-color: #483DE0;
 $wallet-text-color: #333;
 $wallet-bg-color: #f4f6f8;
 $wallet-border-color: #eee;
+
+// Variables - Dark Theme
+$wallet-dark-primary-color: #7B6CF6;
+$wallet-dark-primary-gradient-start: #6366f1;
+$wallet-dark-primary-gradient-end: #8b5cf6;
+$wallet-dark-text-color: #e2e8f0;
+$wallet-dark-text-muted: #94a3b8;
+$wallet-dark-bg-color: #0f172a;
+$wallet-dark-card-bg: #1e293b;
+$wallet-dark-card-bg-hover: #334155;
+$wallet-dark-border-color: #334155;
+$wallet-dark-input-bg: #0f172a;
+$wallet-dark-success: #10b981;
+$wallet-dark-danger: #ef4444;
 
 .woo-wallet-icon-wallet:before {
     content: "\e900";
@@ -881,4 +895,454 @@ $wallet-border-color: #eee;
             float: none !important;
         }
     }
+}
+
+// ===========================================
+// DARK THEME STYLES
+// ===========================================
+// Auto-detect dark themes via common dark mode classes/attributes
+// or use @media (prefers-color-scheme: dark)
+
+// Dark theme mixin for reusability
+@mixin wallet-dark-theme {
+    .woo-wallet-my-wallet-container {
+        --wallet-primary-color: #{$wallet-dark-primary-color};
+        --wallet-text-color: #{$wallet-dark-text-color};
+        --wallet-bg-color: #{$wallet-dark-bg-color};
+        --wallet-border-color: #{$wallet-dark-border-color};
+        
+        color: var(--wallet-text-color);
+        
+        // Header
+        .woo-wallet-header {
+            h2 {
+                color: #{$wallet-dark-text-color};
+                background: linear-gradient(135deg, #fff 0%, #{$wallet-dark-text-muted} 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+            
+            p {
+                color: #{$wallet-dark-text-muted};
+            }
+        }
+        
+        // Top Section
+        .woo-wallet-top-section {
+            background: #{$wallet-dark-card-bg};
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3),
+                        0 0 0 1px #{$wallet-dark-border-color};
+        }
+        
+        // Balance Card with gradient
+        .woo-wallet-balance-card {
+            background: linear-gradient(135deg, #{$wallet-dark-primary-gradient-start} 0%, #{$wallet-dark-primary-gradient-end} 100%);
+            position: relative;
+            overflow: hidden;
+            
+            &::before {
+                content: '';
+                position: absolute;
+                top: -50%;
+                right: -50%;
+                width: 100%;
+                height: 100%;
+                background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+                pointer-events: none;
+            }
+            
+            h3 {
+                color: rgba(255, 255, 255, 0.85);
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                font-size: 0.85rem;
+            }
+            
+            .woo-wallet-price {
+                color: #fff;
+                text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            }
+        }
+        
+        // Navigation Tabs
+        .woo-wallet-nav-tabs {
+            background: #{$wallet-dark-card-bg};
+        }
+        
+        .woo-wallet-nav-tab {
+            background: #{$wallet-dark-card-bg};
+            color: #{$wallet-dark-text-muted};
+            border-color: #{$wallet-dark-border-color};
+            
+            &:hover,
+            &:focus,
+            &:active {
+                background: #{$wallet-dark-card-bg-hover};
+                color: #{$wallet-dark-text-color};
+            }
+            
+            &.active {
+                background: #{$wallet-dark-card-bg-hover};
+                color: var(--wallet-primary-color);
+            }
+        }
+        
+        // Submenu
+        .woo-wallet-submenu {
+            background: #{$wallet-dark-card-bg};
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            border: 1px solid #{$wallet-dark-border-color};
+            
+            .woo-wallet-submenu-item {
+                color: #{$wallet-dark-text-muted};
+                border-bottom-color: #{$wallet-dark-border-color};
+                
+                &:hover {
+                    background: #{$wallet-dark-card-bg-hover};
+                    color: var(--wallet-primary-color);
+                }
+            }
+        }
+        
+        // Content Area
+        .woo-wallet-content-area {
+            background: transparent;
+            box-shadow: none;
+        }
+        
+        // Section Title
+        .woo-wallet-section-title {
+            background: #{$wallet-dark-card-bg};
+            color: #{$wallet-dark-text-color};
+            border-bottom-color: #{$wallet-dark-border-color};
+        }
+        
+        // Transactions List
+        .woo-wallet-transactions-list {
+            background: #{$wallet-dark-card-bg};
+            border-color: #{$wallet-dark-border-color};
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        // Transactions Table
+        .woo-wallet-transactions-table {
+            th {
+                background: #{$wallet-dark-bg-color};
+                color: #{$wallet-dark-text-muted};
+                border-bottom-color: #{$wallet-dark-border-color};
+            }
+            
+            td {
+                color: #{$wallet-dark-text-color};
+                border-bottom-color: #{$wallet-dark-border-color};
+            }
+            
+            tr:hover td {
+                background: #{$wallet-dark-card-bg-hover};
+            }
+            
+            .amount {
+                &.credit {
+                    color: #{$wallet-dark-success};
+                }
+                
+                &.debit {
+                    color: #{$wallet-dark-danger};
+                }
+            }
+        }
+        
+        // Forms
+        .woo-wallet-form-wrapper {
+            background: #{$wallet-dark-card-bg};
+            border-color: #{$wallet-dark-border-color};
+            
+            label {
+                color: #{$wallet-dark-text-color};
+            }
+            
+            input[type="text"],
+            input[type="number"],
+            textarea,
+            select {
+                background: #{$wallet-dark-input-bg};
+                border-color: #{$wallet-dark-border-color};
+                color: #{$wallet-dark-text-color};
+                
+                &:focus {
+                    border-color: var(--wallet-primary-color);
+                    background: #{$wallet-dark-input-bg};
+                    box-shadow: 0 0 0 3px rgba($wallet-dark-primary-color, 0.15);
+                }
+                
+                &::placeholder {
+                    color: #{$wallet-dark-text-muted};
+                }
+            }
+            
+            input[type="submit"] {
+                background: linear-gradient(135deg, #{$wallet-dark-primary-gradient-start} 0%, #{$wallet-dark-primary-gradient-end} 100%);
+                
+                &:hover {
+                    box-shadow: 0 5px 20px rgba($wallet-dark-primary-color, 0.4);
+                }
+            }
+        }
+        
+        // Referral Card
+        .woo-wallet-referral-link-card {
+            background: #{$wallet-dark-card-bg};
+            border-color: #{$wallet-dark-border-color};
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            
+            h3 {
+                color: #{$wallet-dark-text-color};
+            }
+        }
+        
+        .woo-wallet-referral-input-wrapper {
+            .dashicons {
+                color: #{$wallet-dark-text-muted};
+            }
+            
+            input[type="text"] {
+                background: #{$wallet-dark-input-bg} !important;
+                border-color: #{$wallet-dark-border-color} !important;
+                color: #{$wallet-dark-text-color} !important;
+            }
+        }
+        
+        .woo-wallet-copy-btn {
+            background: linear-gradient(135deg, #{$wallet-dark-primary-gradient-start} 0%, #{$wallet-dark-primary-gradient-end} 100%);
+        }
+        
+        // Referral Stats
+        .woo-wallet-referral-stats {
+            background: #{$wallet-dark-card-bg};
+            border-color: #{$wallet-dark-border-color};
+            
+            th {
+                background: #{$wallet-dark-bg-color};
+                color: #{$wallet-dark-text-muted};
+                border-bottom-color: #{$wallet-dark-border-color};
+            }
+            
+            td {
+                color: #{$wallet-dark-text-color};
+                border-bottom-color: #{$wallet-dark-border-color};
+            }
+        }
+        
+        // DataTables Dark Overrides
+        .dataTables_wrapper {
+            color: #{$wallet-dark-text-color};
+            
+            .dataTables_info {
+                color: #{$wallet-dark-text-muted};
+            }
+            
+            .dataTables_paginate .paginate_button {
+                color: #{$wallet-dark-text-muted} !important;
+                
+                &:hover {
+                    background: #{$wallet-dark-card-bg-hover} !important;
+                    color: #{$wallet-dark-text-color} !important;
+                    border-color: #{$wallet-dark-border-color} !important;
+                }
+                
+                &.current,
+                &.current:hover {
+                    background: linear-gradient(135deg, #{$wallet-dark-primary-gradient-start} 0%, #{$wallet-dark-primary-gradient-end} 100%) !important;
+                    color: #fff !important;
+                    border-color: transparent !important;
+                }
+                
+                &.disabled,
+                &.disabled:hover {
+                    color: #{$wallet-dark-border-color} !important;
+                }
+            }
+        }
+        
+        .dataTables_length,
+        .dataTables_filter {
+            color: #{$wallet-dark-text-color};
+            
+            select {
+                background: #{$wallet-dark-input-bg} !important;
+                border-color: #{$wallet-dark-border-color} !important;
+                color: #{$wallet-dark-text-color} !important;
+            }
+            
+            input {
+                background: #{$wallet-dark-input-bg} !important;
+                border-color: #{$wallet-dark-border-color} !important;
+                color: #{$wallet-dark-text-color} !important;
+                
+                &:focus {
+                    border-color: var(--wallet-primary-color) !important;
+                }
+            }
+        }
+        
+        // DataTable Styling
+        table.dataTable.no-footer {
+            border-bottom-color: #{$wallet-dark-border-color} !important;
+        }
+        
+        table.dataTable thead th,
+        table.dataTable thead td {
+            background: #{$wallet-dark-bg-color} !important;
+            color: #{$wallet-dark-text-muted} !important;
+            border-bottom-color: #{$wallet-dark-border-color} !important;
+        }
+        
+        table.dataTable tbody th,
+        table.dataTable tbody td {
+            color: #{$wallet-dark-text-color} !important;
+            border-bottom-color: #{$wallet-dark-border-color} !important;
+        }
+        
+        table.dataTable thead {
+            border-top-color: #{$wallet-dark-border-color} !important;
+        }
+        
+        table.dataTable tbody tr:hover {
+            background-color: #{$wallet-dark-card-bg-hover} !important;
+        }
+        
+        // Credit/Debit marks
+        #wc-wallet-transaction-details mark.credit {
+            color: #{$wallet-dark-success} !important;
+        }
+        
+        #wc-wallet-transaction-details mark.debit {
+            color: #{$wallet-dark-danger} !important;
+        }
+        
+        // Empty state
+        .dataTables_empty {
+            color: #{$wallet-dark-text-muted} !important;
+        }
+    }
+    
+    // DateRangePicker Dark Theme
+    .daterangepicker {
+        background: #{$wallet-dark-card-bg} !important;
+        border-color: #{$wallet-dark-border-color} !important;
+        
+        .calendar-table {
+            background: #{$wallet-dark-card-bg} !important;
+        }
+        
+        td.available:hover,
+        th.available:hover {
+            background: #{$wallet-dark-card-bg-hover} !important;
+            color: #{$wallet-dark-text-color} !important;
+        }
+        
+        td.off,
+        td.off.in-range,
+        td.off.start-date,
+        td.off.end-date {
+            background: transparent !important;
+            color: #{$wallet-dark-border-color} !important;
+        }
+        
+        td.in-range {
+            background-color: rgba($wallet-dark-primary-color, 0.2) !important;
+            color: #{$wallet-dark-text-color} !important;
+        }
+        
+        td.active,
+        td.active:hover {
+            background: #{$wallet-dark-primary-color} !important;
+        }
+        
+        .drp-buttons {
+            border-top-color: #{$wallet-dark-border-color} !important;
+            
+            .btn-default {
+                background: #{$wallet-dark-card-bg-hover} !important;
+                border-color: #{$wallet-dark-border-color} !important;
+                color: #{$wallet-dark-text-color} !important;
+            }
+            
+            .btn-primary {
+                background: linear-gradient(135deg, #{$wallet-dark-primary-gradient-start} 0%, #{$wallet-dark-primary-gradient-end} 100%) !important;
+                border-color: transparent !important;
+            }
+        }
+        
+        th.month,
+        .monthselect,
+        .yearselect {
+            color: #{$wallet-dark-text-color} !important;
+        }
+        
+        .monthselect,
+        .yearselect {
+            background: #{$wallet-dark-input-bg} !important;
+            border-color: #{$wallet-dark-border-color} !important;
+        }
+        
+        .ranges li {
+            color: #{$wallet-dark-text-muted} !important;
+            
+            &:hover {
+                background: #{$wallet-dark-card-bg-hover} !important;
+                color: #{$wallet-dark-text-color} !important;
+            }
+            
+            &.active {
+                background: #{$wallet-dark-primary-color} !important;
+                color: #fff !important;
+            }
+        }
+        
+        th.prev,
+        th.next {
+            color: #{$wallet-dark-text-muted} !important;
+            
+            &:hover {
+                background: #{$wallet-dark-card-bg-hover} !important;
+                color: #{$wallet-dark-text-color} !important;
+            }
+        }
+        
+        td,
+        th {
+            color: #{$wallet-dark-text-color} !important;
+        }
+    }
+}
+
+// Apply dark theme via common dark mode selectors
+// Supports: body classes, html attributes, data-theme attributes
+body.dark,
+body.dark-mode,
+body.dark-theme,
+body.theme-dark,
+html.dark,
+html.dark-mode,
+html[data-theme="dark"],
+body[data-theme="dark"],
+.dark-mode,
+.theme-dark,
+[data-bs-theme="dark"] {
+    @include wallet-dark-theme;
+}
+
+// System preference dark mode
+@media (prefers-color-scheme: dark) {
+    // Only apply if no explicit theme class is set
+    body:not(.light):not(.light-mode):not(.light-theme):not([data-theme="light"]) {
+        @include wallet-dark-theme;
+    }
+}
+
+// Force dark theme class for manual override
+.woo-wallet-dark-theme {
+    @include wallet-dark-theme;
 }
